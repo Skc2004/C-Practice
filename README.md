@@ -1,1 +1,1 @@
-# This repository contains the practice codes of C-Programming
+# This repository contains the practice codes of C-Programmi
