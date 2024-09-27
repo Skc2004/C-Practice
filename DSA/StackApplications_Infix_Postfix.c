@@ -1,38 +1,46 @@
 // Stack applications infix to postfix conversion and postfix evaluation.
 
-
+//Including required Libraries
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+//Declaring and Initializing a constant variable
 #define MAX 50
 
+//Declaration of Stack
 char stack[MAX];
+//Declaration and Initialization of top variable
 int top = -1;
 
-void push(char x) {
-    if(top==MAX-1)
+//Push Function
+void push(char x) 
+{
+    if(top==MAX-1) //Condition to check if the Stack is Full
     {
         printf("Stack is Full !!!");
     }
     else
     {
-        stack[++top] = x;
+        stack[++top] = x; //Push operation
     }
 }
 
-char pop() {
-    if(top==-1)
+//Pop Function
+char pop() 
+{
+    if(top==-1) //Condition to check if the Stack is Empty
     {
         printf("Stack is Empty !!!");
     }
     else
     {
-        return stack[top--];
+        return stack[top--]; //Pop Operation
     }
 }
 
-int precedence(char x) {
+int precedence(char x) 
+{
     if(x == '+' || x == '-')
         return 1;
     if(x == '*' || x == '/')
@@ -40,22 +48,27 @@ int precedence(char x) {
     return 0;
 }
 
-void infixToPostfix(char infix[], char postfix[]) {
+void infixToPostfix(char infix[], char postfix[]) 
+{
     int i, j = 0;
-    for(i = 0; i < strlen(infix); i++) {
+    for(i = 0; i < strlen(infix); i++) 
+    {
         if(infix[i] == ' ' || infix[i] == '(')
             continue;
-        else if(infix[i] == ')') {
+        else if(infix[i] == ')') 
+        {
             while(stack[top] != '(')
                 postfix[j++] = pop();
             pop(); // Remove the '('
         }
-        else if(infix[i] == '+' || infix[i] == '-' || infix[i] == '*' || infix[i] == '/') {
+        else if(infix[i] == '+' || infix[i] == '-' || infix[i] == '*' || infix[i] == '/') 
+        {
             while(top != -1 && stack[top] != '(' && precedence(stack[top]) >= precedence(infix[i]))
                 postfix[j++] = pop();
             push(infix[i]);
         }
-        else {
+        else 
+        {
             postfix[j++] = infix[i];
         }
     }
@@ -64,13 +77,17 @@ void infixToPostfix(char infix[], char postfix[]) {
     postfix[j] = '\0';
 }
 
-int evaluatePostfix(char postfix[]) {
+int evaluatePostfix(char postfix[]) 
+{
     int i, x, y;
-    for(i = 0; i < strlen(postfix); i++) {
-        if(postfix[i] == '+' || postfix[i] == '-' || postfix[i] == '*' || postfix[i] == '/') {
+    for(i = 0; i < strlen(postfix); i++) 
+    {
+        if(postfix[i] == '+' || postfix[i] == '-' || postfix[i] == '*' || postfix[i] == '/') 
+        {
             y = pop() - '0';
             x = pop() - '0';
-            switch(postfix[i]) {
+            switch(postfix[i]) 
+            {
                 case '+':
                     push(x + y + '0');
                     break;
@@ -91,7 +108,8 @@ int evaluatePostfix(char postfix[]) {
     return pop() - '0';
 }
 
-int main() {
+int main() 
+{
     char infix[50], postfix[50];
     printf("Enter infix expression: ");
     scanf("%s", infix);
@@ -100,6 +118,217 @@ int main() {
     printf("Result: %d\n", evaluatePostfix(postfix));
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
